@@ -28,7 +28,7 @@ public class Player {
         return "\nPlayer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", hand=" + hand +
+                ", hand(" + hand.size() + ")=" + hand +
                 "}";
     }
 }
