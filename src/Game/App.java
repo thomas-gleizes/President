@@ -1,16 +1,13 @@
 package Game;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class App {
 
     public static void main(String[] args) {
-        Board flex = new Board(new String[]{"Kamil", "FlexMan", "DydyLe100"});
-        System.out.println(flex);
-        
+        Board game = new Board(new String[]{"Silver", "Gold", "Cooper"});
+        System.out.println(game);
 
+        ValueCard V = new ValueCard();
+        System.out.println(ValueCard.VALUE_CARD.get(1));
     }
 
 }
-
