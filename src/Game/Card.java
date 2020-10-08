@@ -18,4 +18,5 @@ public class Card {
     public String toString() {
         return this.color + "[" + this.name + "|" + this.sign + "]\u001B[0m";
     }
+
 }

@@ -22,4 +22,12 @@ public class ValueCard {
         VALUE_CARD.put(12, '2');
     }
 
+    public static int getIndexOfValue(char value){
+        int[] tab = new int[]{};
+        for (int i = 0; i < VALUE_CARD.size(); i++){
+            if (VALUE_CARD.get(i) == value) return i;
+        }
+        return -1;
+    }
+
 }
