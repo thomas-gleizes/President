@@ -9,7 +9,6 @@ public class Card {
 
     public Card(int value, char sign) {
         this.value = value;
-        ValueCard V = new ValueCard();
         this.name = ValueCard.VALUE_CARD.get(value);
         this.color = (sign == '♥' || sign == '♦') ? "\u001B[31m" : "\u001B[34m";
         this.sign = sign;

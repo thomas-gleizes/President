@@ -6,8 +6,7 @@ import java.util.Map;
 public class ValueCard {
 
     public static final Map<Integer, Character> VALUE_CARD = new HashMap<>();
-
-    public ValueCard (){
+    static {
         VALUE_CARD.put(0, '3');
         VALUE_CARD.put(1, '4');
         VALUE_CARD.put(2, '5');
