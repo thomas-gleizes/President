@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private int id;
-    private String name;
+
+    private final int id;
+    private final String name;
     private List<Card> hand;
 
     public Player(int id, String name) {
@@ -14,12 +15,21 @@ public class Player {
         this.hand = new ArrayList<>();
     }
 
+    public List<Card> getHand(){
+        return hand;
+    }
+
+    public void addCardHand(Card c){
+        hand.add(c);
+    }
+
     @Override
     public String toString() {
-        return "Player{" +
+        return "\nPlayer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", hand=" + hand +
-                '}';
+                ", hand(" + hand.size() + ")=" + hand +
+                "}";
     }
+
 }
