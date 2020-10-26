@@ -23,13 +23,17 @@ public class Player {
         hand.add(c);
     }
 
+
+
+
     @Override
     public String toString() {
-        return "\nPlayer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", hand(" + hand.size() + ")=" + hand +
-                "}";
+        String str = "Main du Joueur : \n{";
+        for (int i = 0; i < hand.size(); i++){
+            str += i + ": " + hand.get(i);
+            if (hand.size() != i + 1) str += ", ";
+        }
+        return str + "}\n";
     }
 
 }
