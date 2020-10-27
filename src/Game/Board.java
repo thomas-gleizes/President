@@ -17,8 +17,8 @@ public class Board {
         currentCard = null;
     }
 
-    public void start(){
-
+    public Card getCurrentCard() {
+        return currentCard;
     }
 
     @Override

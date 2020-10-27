@@ -24,7 +24,7 @@ public class Player {
     }
 
     public String toStringHand(Card currentCard) {
-        if (currentCard == null) return hand.toString();
+        if (currentCard == null) return toString();
         StringBuilder str = new StringBuilder("{");
         int index = 0;
         for (int i = 0; i < hand.size(); i++) {

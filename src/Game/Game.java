@@ -6,7 +6,7 @@ import java.util.List;
 public class Game {
 
     private final List<Player> playerList;
-    private Board bord;
+    private Board board;
     private boolean isFinish;
     private static Dialog command;
 
@@ -15,7 +15,7 @@ public class Game {
         for (int i = 0; i < playerNames.length; i++) {
             playerList.add(new Player(i, playerNames[i]));
         }
-        bord = new Board(playerList);
+        board = new Board(playerList);
         isFinish = false;
         command = new Dialog();
     }
@@ -24,7 +24,8 @@ public class Game {
         Player currentPlayer = getStarter();
 
         while (!isFinish){
-            int indexCard = command.getCard(currentPlayer);
+            int index = command.getCard(currentPlayer, board.getCurrentCard());
+
         }
     }
 

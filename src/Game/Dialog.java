@@ -10,16 +10,18 @@ public class Dialog {
         input = new Scanner(System.in);
     }
 
-    public short getCard(Player p) {
-        boolean bool = false;
-        short valueCard = -1;
-        while (!bool) {
-            System.out.println("Choissiez une card");
-            valueCard = input.nextShort();
-            if (valueCard > 0 && valueCard < p.getHand().size()) bool = true;
-            else System.out.println("Valeur incorrect !");
+    public int getCard(Player p, Card currentCard) {
+        Boolean bool = false;
+        System.out.println("Choissiez une carte (0 pour passé le tour):");
+        System.out.println(p.toStringHand(currentCard));
+        if (currentCard == null) {
+            int index = input.nextInt();
+        } else {
+
         }
-        return valueCard;
+        return 1;
+
+
     }
 
 }
