@@ -29,8 +29,9 @@ public class Player {
         int index = 0;
         for (int i = 0; i < hand.size(); i++) {
             Card c = hand.get(i);
-            if (c.getValue() >= c.getValue()) {
-                str.append(index).append(": ").append(c);
+            if (c.getValue() >= currentCard.getValue()) {
+                str.append(index + 1).append(": ").append(c);
+                index++;
             } else {
                 str.append(c);
             }
@@ -40,7 +41,7 @@ public class Player {
     }
 
     public void sortHand() {
-        hand.sort((Card c1, Card c2) -> (Integer.compare(c1.getValue(), c2.getValue())));
+        hand.sort((Card c1, Card c2) -> (Integer.compare(c2.getValue(), c1.getValue())));
     }
 
     public List<Card> getHandPlayable(Card currentCard){
@@ -65,7 +66,7 @@ public class Player {
     public String toString() {
         StringBuilder str = new StringBuilder("Main du Joueur : {");
         for (int i = 0; i < hand.size(); i++) {
-            str.append(i).append(": ").append(hand.get(i));
+            str.append(i + 1).append(": ").append(hand.get(i));
             if (hand.size() != i + 1) str.append(", ");
         }
         return str + "}\n";

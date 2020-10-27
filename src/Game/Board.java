@@ -15,6 +15,9 @@ public class Board {
         deck.distribueCard(playerList);
         cardPlayed = new ArrayList<>();
         currentCard = null;
+        for (Player p : playerList){
+            p.sortHand();
+        }
     }
 
     public Card getCurrentCard() {

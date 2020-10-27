@@ -24,8 +24,9 @@ public class Game {
         Player currentPlayer = getStarter();
 
         while (!isFinish){
-            int index = command.getCard(currentPlayer, board.getCurrentCard());
-
+            int index = command.getIndexCard(currentPlayer, new Card(8, '♣'));
+            if (index == 0) System.out.println("LE tour est passé");
+            else System.out.println(currentPlayer.getHand().get(index - 1));
         }
     }
 
