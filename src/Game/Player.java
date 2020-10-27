@@ -15,6 +15,10 @@ public class Player {
         this.hand = new ArrayList<>();
     }
 
+    public int getId(){
+        return id;
+    }
+
     public List<Card> getHand() {
         return hand;
     }
@@ -55,10 +59,11 @@ public class Player {
         return cardPlayable;
     }
 
-    public void getPlayCard(int index, Card CurrentCard){
+    public Card playCard(int index, Card CurrentCard){
         List<Card> cardsPlayable = getHandPlayable(CurrentCard);
         Card cardPlayed = cardsPlayable.get(index);
         hand.remove(cardPlayed);
+        return cardPlayed;
     }
 
 

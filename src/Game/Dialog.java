@@ -11,7 +11,7 @@ public class Dialog {
     }
 
     public int getIndexCard(Player p, Card currentCard) {
-        Boolean bool = false;
+        boolean bool = false;
         int index = 0;
         while (!bool){
             int size;
@@ -19,10 +19,13 @@ public class Dialog {
             System.out.println("Choissiez une carte (0 pour passé le tour):");
             System.out.println(p.toStringHand(currentCard));
             index = input.nextInt();
-            if (index == 0) return 0;
+            if (index == 0){
+                System.out.println("Le tour est passé !");
+                return 0;
+            }
             if (currentCard == null) size = p.getHand().size();
             else size = p.getHandPlayable(currentCard).size();
-            if (index > 1 && index < size + 1) bool = true;
+            if (index >= 1 && index <= size) bool = true;
             else System.out.println("Mauvais index");
         }
         return index;

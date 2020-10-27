@@ -9,6 +9,7 @@ public class Game {
     private Board board;
     private boolean isFinish;
     private static Dialog command;
+    private List<Player> classement;
 
     public Game(String[] playerNames) {
         playerList = new ArrayList<>();
@@ -18,6 +19,7 @@ public class Game {
         board = new Board(playerList);
         isFinish = false;
         command = new Dialog();
+        classement = new ArrayList<>();
     }
 
     public void start(){
@@ -25,8 +27,10 @@ public class Game {
 
         while (!isFinish){
             int index = command.getIndexCard(currentPlayer, new Card(8, '♣'));
-            if (index == 0) System.out.println("LE tour est passé");
-            else System.out.println(currentPlayer.getHand().get(index - 1));
+            if (index == 0){
+                System.out.println(currentPlayer.getHand().get(index - 1));
+            }
+            currentPlayer = getNextPlayer(currentPlayer);
         }
     }
 
@@ -38,6 +42,21 @@ public class Game {
             }
         }
         return playerList.get(0);
+    }
+
+    public Player getNextPlayer(Player currentPlayer){
+        if (currentPlayer.getId() + 1 == playerList.size()) return playerList.get(0);
+        else return playerList.get(currentPlayer.getId() + 1);
+    }
+
+    public boolean isFinish(){
+        for (Player p : playerList){
+            if (p.getHand().size() == 0){
+                classement.add(p);
+                playerList.remove(p);
+            }
+        }
+        return playerList.size() == 0;
     }
 
 

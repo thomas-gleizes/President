@@ -24,6 +24,11 @@ public class Board {
         return currentCard;
     }
 
+    public void play(Player p, int indexCard){
+        if (currentCard != null) cardPlayed.add(currentCard);
+        currentCard = p.playCard(indexCard, currentCard);
+    }
+
     @Override
     public String toString() {
         return "Board{" +
