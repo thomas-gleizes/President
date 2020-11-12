@@ -8,7 +8,7 @@ public class Game {
     private final List<Player> playerList;
     private Board board;
     private boolean isFinish;
-    private static Dialog command;
+    private static Dialog dialog;
     private List<Player> classement;
 
     public Game(String[] playerNames) {
@@ -18,7 +18,7 @@ public class Game {
         }
         board = new Board(playerList);
         isFinish = false;
-        command = new Dialog();
+        dialog = new Dialog();
         classement = new ArrayList<>();
     }
 
@@ -26,12 +26,13 @@ public class Game {
         Player currentPlayer = getStarter();
 
         while (!isFinish) {
-            int index = command.getIndexCard(currentPlayer, board.getCurrentCard());
+            int index = dialog.getIndexCard(currentPlayer, board.getCurrentCard());
             if (index != -1) {
-                System.out.println(currentPlayer.getHand().get(index));
+                dialog.displayCardPlayed(currentPlayer, index);
                 board.play(currentPlayer, index);
             }
-            if (board.getCurrentCard().getValue() == 12)  board.reset();
+
+            if (board.getCurrentCard().getValue() == 12) board.reset();
             else currentPlayer = getNextPlayer(currentPlayer);
 
             isFinish = isFinish();
