@@ -32,11 +32,13 @@ public class Player {
         return hasSkipped;
     }
 
-    public boolean hasCard(Card cardSearch){
+    public int indexCard(Card cardSearch){
+        int index = 0;
         for (Card c : hand){
-            if (c.getValue() == cardSearch.getValue()) return true;
+            if (c.getValue() == cardSearch.getValue()) return index;
+            index++;
         }
-        return false;
+        return -1;
     }
 
     public void setHasSkipped(boolean hasSkipped) {

@@ -35,7 +35,7 @@ public class Game {
 
                 if (board.getCurrentCard() != null && board.getCurrentCard().getValue() == 12)  board.reset(playerList);
                 else currentPlayer = getNextPlayer(currentPlayer);
-            } else if (board.getOccurenceCount() >= 2 && currentPlayer.hasCard(board.getCurrentCard())) {
+            } else if (board.getOccurenceCount() >= 2 && currentPlayer.indexCard(board.getCurrentCard()) != -1) {
 
             } else {
                 //Le tour est passé car il ne peut pas jouer
