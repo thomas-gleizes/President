@@ -27,17 +27,25 @@ public class Game {
             if (board.getOccurenceCount() < 2 ){
                 int index = command.getIndexCard(currentPlayer, board.getCurrentCard());
                 if (index != -1) {
-                    System.out.println(currentPlayer.getHand().get(index));
+                    command.displayCardPlayed(currentPlayer, index);
                     board.play(currentPlayer, index);
                 } else {
+                    command.passeTour(currentPlayer);
                     currentPlayer.setHasSkipped(true);
                 }
 
                 if (board.getCurrentCard() != null && board.getCurrentCard().getValue() == 12)  board.reset(playerList);
                 else currentPlayer = getNextPlayer(currentPlayer);
-            } else if (board.getOccurenceCount() >= 2 && currentPlayer.indexCard(board.getCurrentCard()) != -1) {
-
+            } else if (board.getOccurenceCount() >= 2) {
+                int index = currentPlayer.indexCard(board.getCurrentCard());
+                if (index != -1 && command.wantPlay(board.getCurrentCard())) {
+                    command.displayCardPlayed(currentPlayer, index);
+                    board.play(currentPlayer, index);
+                } else {
+                    command.passeTour(currentPlayer);
+                }
             } else {
+                command.passeTour(currentPlayer);
                 //Le tour est passé car il ne peut pas jouer
             }
 

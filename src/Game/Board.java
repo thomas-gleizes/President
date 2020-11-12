@@ -9,6 +9,7 @@ public class Board {
     private List<Card> cardsPlayed;
     private Card currentCard;
     private int occurenceCount;
+    private boolean passed;
 
     public Board(List<Player> playerList) {
         deck = new Deck();
@@ -20,6 +21,15 @@ public class Board {
             p.sortHand();
         }
         occurenceCount = 0;
+        passed = false;
+    }
+
+    public boolean isPassed() {
+        return passed;
+    }
+
+    public void setPassed(boolean passed) {
+        this.passed = passed;
     }
 
     public Card getCurrentCard() {

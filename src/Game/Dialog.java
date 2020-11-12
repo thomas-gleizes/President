@@ -10,6 +10,14 @@ public class Dialog {
         input = new Scanner(System.in);
     }
 
+    public void passeTour(Player player) {
+        System.out.println("Le joueur " + player.getName() + " a passe son tour");
+    }
+
+    public void displayCardPlayed(Player player, int index){
+        System.out.println(player.getHand().get(index));
+    }
+
     public int getIndexCard(Player p, Card currentCard) {
         boolean bool = false;
         int index = 0;
@@ -35,6 +43,21 @@ public class Dialog {
             else System.out.println("Mauvais index");
         }
         return index - 1;
+    }
+
+    public boolean wantPlay(Card currentCard){
+        while (true){
+            System.out.println("Voulez vous jouez votres carte [" + currentCard.getName() + "] (Y/N) : Yes default");
+            String value = input.nextLine();
+
+            if (value.equals("") || value.equals("Y")){
+                System.out.println("YES");
+                return true;
+            } else if (value.equals("N")) {
+                System.out.println("NO");
+                return false;
+            } else System.out.println("PAS COMPRIS");
+        }
     }
 
 }

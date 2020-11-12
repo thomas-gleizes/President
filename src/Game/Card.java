@@ -16,6 +16,10 @@ public class Card {
         this.sign = sign;
     }
 
+    public char getName() {
+        return name;
+    }
+
     public int getValue() {
         return value;
     }
