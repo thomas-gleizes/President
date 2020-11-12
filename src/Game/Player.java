@@ -15,8 +15,12 @@ public class Player {
         this.hand = new ArrayList<>();
     }
 
-    public int getId(){
+    public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public List<Card> getHand() {
@@ -48,22 +52,30 @@ public class Player {
         hand.sort((Card c1, Card c2) -> (Integer.compare(c2.getValue(), c1.getValue())));
     }
 
-    public List<Card> getHandPlayable(Card currentCard){
+    public List<Card> getHandPlayable(Card currentCard) {
         if (currentCard == null) return hand;
         List<Card> cardPlayable = new ArrayList<>();
-        for (Card c : hand){
-            if (c.getValue() >= currentCard.getValue()){
+        for (Card c : hand) {
+            if (c.getValue() >= currentCard.getValue()) {
                 cardPlayable.add(c);
             }
         }
         return cardPlayable;
     }
 
-    public Card playCard(int index, Card CurrentCard){
-        List<Card> cardsPlayable = getHandPlayable(CurrentCard);
-        Card cardPlayed = cardsPlayable.get(index);
+    public Card getCardPlayed(int index, Card currentCard) {
+        if (currentCard == null) return getHand().get(index);
+        return getHandPlayable(currentCard).get(index);
+    }
+
+    public void removeCard(Card cardPlayed) {
         hand.remove(cardPlayed);
-        return cardPlayed;
+    }
+
+    public boolean canPlay() {
+
+
+        return true;
     }
 
 

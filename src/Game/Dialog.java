@@ -16,19 +16,19 @@ public class Dialog {
         while (!bool){
             int size;
 
-            System.out.println("Choissiez une carte (0 pour passé le tour):");
+            System.out.println(p.getName() +  " => Choissiez une carte (0 pour passé le tour): " + currentCard);
             System.out.println(p.toStringHand(currentCard));
             index = input.nextInt();
             if (index == 0){
                 System.out.println("Le tour est passé !");
-                return 0;
+                return -1;
             }
             if (currentCard == null) size = p.getHand().size();
             else size = p.getHandPlayable(currentCard).size();
             if (index >= 1 && index <= size) bool = true;
             else System.out.println("Mauvais index");
         }
-        return index;
+        return index - 1;
     }
 
 }

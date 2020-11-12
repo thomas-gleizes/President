@@ -9,13 +9,13 @@ public class Board {
     private List<Card> cardPlayed;
     private Card currentCard;
 
-    public Board (List<Player> playerList){
+    public Board(List<Player> playerList) {
         deck = new Deck();
         deck.shuffle();
         deck.distribueCard(playerList);
         cardPlayed = new ArrayList<>();
         currentCard = null;
-        for (Player p : playerList){
+        for (Player p : playerList) {
             p.sortHand();
         }
     }
@@ -24,9 +24,14 @@ public class Board {
         return currentCard;
     }
 
-    public void play(Player p, int indexCard){
+    public void play(Player p, int indexCard) {
         if (currentCard != null) cardPlayed.add(currentCard);
-        currentCard = p.playCard(indexCard, currentCard);
+        currentCard = p.getCardPlayed(indexCard, currentCard);
+        p.removeCard(currentCard);
+    }
+
+    public void reset() {
+        currentCard = null;
     }
 
     @Override

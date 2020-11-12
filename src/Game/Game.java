@@ -22,36 +22,40 @@ public class Game {
         classement = new ArrayList<>();
     }
 
-    public void start(){
+    public void start() {
         Player currentPlayer = getStarter();
 
-        while (!isFinish){
-            int index = command.getIndexCard(currentPlayer, new Card(8, '♣'));
-            if (index == 0){
-                System.out.println(currentPlayer.getHand().get(index - 1));
+        while (!isFinish) {
+            int index = command.getIndexCard(currentPlayer, board.getCurrentCard());
+            if (index != -1) {
+                System.out.println(currentPlayer.getHand().get(index));
+                board.play(currentPlayer, index);
             }
-            currentPlayer = getNextPlayer(currentPlayer);
+            if (board.getCurrentCard().getValue() == 12)  board.reset();
+            else currentPlayer = getNextPlayer(currentPlayer);
+
+            isFinish = isFinish();
         }
     }
 
-    public Player getStarter (){
+    public Player getStarter() {
         Card dameCoeur = new Card(9, '♥');
-        for (Player p : playerList){
-            for (Card c : p.getHand()){
+        for (Player p : playerList) {
+            for (Card c : p.getHand()) {
                 if (c.equals(dameCoeur)) return p;
             }
         }
         return playerList.get(0);
     }
 
-    public Player getNextPlayer(Player currentPlayer){
+    public Player getNextPlayer(Player currentPlayer) {
         if (currentPlayer.getId() + 1 == playerList.size()) return playerList.get(0);
         else return playerList.get(currentPlayer.getId() + 1);
     }
 
-    public boolean isFinish(){
-        for (Player p : playerList){
-            if (p.getHand().size() == 0){
+    public boolean isFinish() {
+        for (Player p : playerList) {
+            if (p.getHand().size() == 0) {
                 classement.add(p);
                 playerList.remove(p);
             }
