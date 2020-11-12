@@ -13,13 +13,19 @@ public class Dialog {
     public int getIndexCard(Player p, Card currentCard) {
         boolean bool = false;
         int index = 0;
-        while (!bool){
+        while (!bool) {
             int size;
 
-            System.out.println(p.getName() +  " => Choissiez une carte (0 pour passé le tour): " + currentCard);
+            System.out.print(p.getName() + " => Choissiez une carte (0 pour passé le tour): ");
+            if (currentCard == null) {
+                System.out.println("[ ]");
+            } else {
+                System.out.println(currentCard);
+            }
+
             System.out.println(p.toStringHand(currentCard));
             index = input.nextInt();
-            if (index == 0){
+            if (index == 0) {
                 System.out.println("Le tour est passé !");
                 return -1;
             }

@@ -8,6 +8,7 @@ public class Player {
     private final int id;
     private final String name;
     private List<Card> hand;
+    private boolean hasSkipped = false;
 
     public Player(int id, String name) {
         this.id = id;
@@ -25,6 +26,21 @@ public class Player {
 
     public List<Card> getHand() {
         return hand;
+    }
+
+    public boolean isHasSkipped() {
+        return hasSkipped;
+    }
+
+    public boolean hasCard(Card cardSearch){
+        for (Card c : hand){
+            if (c.getValue() == cardSearch.getValue()) return true;
+        }
+        return false;
+    }
+
+    public void setHasSkipped(boolean hasSkipped) {
+        this.hasSkipped = hasSkipped;
     }
 
     public void addCardHand(Card c) {

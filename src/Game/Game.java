@@ -7,7 +7,6 @@ public class Game {
 
     private final List<Player> playerList;
     private Board board;
-    private boolean isFinish;
     private static Dialog command;
     private List<Player> classement;
 
@@ -17,7 +16,6 @@ public class Game {
             playerList.add(new Player(i, playerNames[i]));
         }
         board = new Board(playerList);
-        isFinish = false;
         command = new Dialog();
         classement = new ArrayList<>();
     }
@@ -25,18 +23,28 @@ public class Game {
     public void start() {
         Player currentPlayer = getStarter();
 
-        while (!isFinish) {
-            int index = command.getIndexCard(currentPlayer, board.getCurrentCard());
-            if (index != -1) {
-                System.out.println(currentPlayer.getHand().get(index));
-                board.play(currentPlayer, index);
-            }
-            if (board.getCurrentCard().getValue() == 12)  board.reset();
-            else currentPlayer = getNextPlayer(currentPlayer);
+        while (!isFinish()) {
+            if (board.getOccurenceCount() < 2 ){
+                int index = command.getIndexCard(currentPlayer, board.getCurrentCard());
+                if (index != -1) {
+                    System.out.println(currentPlayer.getHand().get(index));
+                    board.play(currentPlayer, index);
+                } else {
+                    currentPlayer.setHasSkipped(true);
+                }
 
-            isFinish = isFinish();
+                if (board.getCurrentCard() != null && board.getCurrentCard().getValue() == 12)  board.reset(playerList);
+                else currentPlayer = getNextPlayer(currentPlayer);
+            } else if (board.getOccurenceCount() >= 2 && currentPlayer.hasCard(board.getCurrentCard())) {
+
+            } else {
+                //Le tour est passé car il ne peut pas jouer
+            }
+
         }
     }
+
+
 
     public Player getStarter() {
         Card dameCoeur = new Card(9, '♥');
