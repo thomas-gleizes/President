@@ -39,6 +39,7 @@ public class Dialog {
     }
 
     public boolean wantPlay(Player p, Card currentCard){
+        Scanner input = new Scanner(System.in);
         while (true){
             System.out.print(p.getName() + " => Voulez vous jouez votres carte [" + currentCard.getName() + "] (1:Yes/0:Non) : Yes default");
             int value = input.nextInt();

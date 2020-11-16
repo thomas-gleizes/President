@@ -20,13 +20,14 @@ public class Game {
         leaderBoard = new ArrayList<>();
     }
 
-    public void start() {
+    public void run() {
 
-        for (Player p: playerList){
-            System.out.println(p.getName() + " => " + p.getHand());
-        }
+//        for (Player p: playerList){
+//            System.out.println(p.getName() + " => " + p.getHand());
+//        }
+//        Player currentPlayer = playerList.get(0);
 
-        Player currentPlayer = playerList.get(0);
+        Player currentPlayer = getStarter();
 
         while (!isFinish()) {
             if (board.getOccurenceCount() < 2 || board.isPassed()){
@@ -51,13 +52,9 @@ public class Game {
                 }
                 if (board.getOccurenceCount() == 4) board.reset(playerList);
                 else currentPlayer = getNextPlayer(currentPlayer);
-
             }
-
         }
     }
-
-
 
     public Player getStarter() {
         Card dameCoeur = new Card(9, '♥');
