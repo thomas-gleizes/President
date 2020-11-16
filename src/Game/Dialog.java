@@ -15,7 +15,7 @@ public class Dialog {
     }
 
     public void displayCardPlayed(Player player, int index){
-        System.out.println(player.getHand().get(index));
+        System.out.println("Carte jouée: " + player.getHand().get(index));
     }
 
     public int getIndexCard(Player p, Card currentCard) {
@@ -40,7 +40,7 @@ public class Dialog {
 
     public boolean wantPlay(Player p, Card currentCard){
         while (true){
-            System.out.println("Voulez vous jouez votres carte [" + currentCard.getName() + "] (Y/N) : Yes default");
+            System.out.println(p.getName() + " => Voulez vous jouez votres carte [" + currentCard.getName() + "] (Y/N) : Yes default");
             String value = input.nextLine();
 
             if (value.equals("") || value.equals("Y")){
