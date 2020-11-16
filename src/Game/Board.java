@@ -49,7 +49,7 @@ public class Board {
                 System.out.println("Occurence de : "+currentCard+" = "+occurenceCount);
             }
             else resetOccurence();
-        }
+        } else incrementOccurence();
         currentCard = cardPlayed;
         p.removeCard(currentCard);
     }

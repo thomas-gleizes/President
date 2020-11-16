@@ -38,7 +38,8 @@ public class Game {
                 else currentPlayer = getNextPlayer(currentPlayer);
             } else if (board.getOccurenceCount() >= 2) {
                 int index = currentPlayer.indexCard(board.getCurrentCard());
-                if (index != -1 && command.wantPlay(currentPlayer, board.getCurrentCard())) {
+                boolean wantPlay = command.wantPlay(currentPlayer, board.getCurrentCard());
+                if (index != -1 && wantPlay) {
                     command.displayCardPlayed(currentPlayer, index);
                     board.play(currentPlayer, index);
                 } else {
