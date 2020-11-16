@@ -34,11 +34,11 @@ public class Game {
                 if (index != -1) {
                     dialog.displayCardPlayed(currentPlayer, index);
                     board.play(currentPlayer, index);
+                    board.setPassed(false);
                 } else {
                     dialog.passeTour(currentPlayer);
                     currentPlayer.setHasSkipped(true);
                 }
-                board.setPassed(false);
                 if (board.getCurrentCard() != null && board.getCurrentCard().getValue() == 12) board.reset(playerList);
                 else currentPlayer = getNextPlayer(currentPlayer);
             } else if (board.getOccurenceCount() >= 2) {
@@ -49,9 +49,11 @@ public class Game {
                     board.setPassed(true);
                     dialog.passeTour(currentPlayer);
                 }
-                currentPlayer = getNextPlayer(currentPlayer);
+                if (board.getOccurenceCount() == 4) board.reset(playerList);
+                else currentPlayer = getNextPlayer(currentPlayer);
+
             }
-            if (board.getOccurenceCount() == 4) board.reset(playerList);
+
         }
     }
 

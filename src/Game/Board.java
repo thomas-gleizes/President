@@ -51,8 +51,9 @@ public class Board {
             if (currentCard.getValue() == cardPlayed.getValue()){
                 incrementOccurence();
                 System.out.println("Occurence de : "+currentCard+" = "+occurenceCount);
+            } else {
+                resetOccurence();
             }
-            else resetOccurence();
         } else incrementOccurence();
         currentCard = cardPlayed;
         p.removeCard(currentCard);
