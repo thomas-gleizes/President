@@ -7,8 +7,8 @@ public class Game {
 
     private final List<Player> playerList;
     private Board board;
-    private static Dialog command;
-    private List<Player> classement;
+    private static Dialog dialog;
+    private List<Player> leaderBoard;
 
     public Game(String[] playerNames) {
         playerList = new ArrayList<>();
@@ -16,41 +16,42 @@ public class Game {
             playerList.add(new Player(i, playerNames[i]));
         }
         board = new Board(playerList);
-        command = new Dialog();
-        classement = new ArrayList<>();
+        dialog = new Dialog();
+        leaderBoard = new ArrayList<>();
     }
 
     public void start() {
-        Player currentPlayer = getStarter();
+
+        for (Player p: playerList){
+            System.out.println(p.getName() + " => " + p.getHand());
+        }
+
+        Player currentPlayer = playerList.get(0);
 
         while (!isFinish()) {
-            if (board.getOccurenceCount() < 2 ){
-                int index = command.getIndexCard(currentPlayer, board.getCurrentCard());
+            if (board.getOccurenceCount() < 2 || board.isPassed()){
+                int index = dialog.getIndexCard(currentPlayer, board.getCurrentCard());
                 if (index != -1) {
-                    command.displayCardPlayed(currentPlayer, index);
+                    dialog.displayCardPlayed(currentPlayer, index);
                     board.play(currentPlayer, index);
                 } else {
-                    command.passeTour(currentPlayer);
+                    dialog.passeTour(currentPlayer);
                     currentPlayer.setHasSkipped(true);
                 }
-
-                if (board.getCurrentCard() != null && board.getCurrentCard().getValue() == 12)  board.reset(playerList);
+                board.setPassed(false);
+                if (board.getCurrentCard() != null && board.getCurrentCard().getValue() == 12) board.reset(playerList);
                 else currentPlayer = getNextPlayer(currentPlayer);
             } else if (board.getOccurenceCount() >= 2) {
                 int index = currentPlayer.indexCard(board.getCurrentCard());
-                if (index != -1) {
-                    boolean wantPlay = command.wantPlay(currentPlayer, board.getCurrentCard());
-                    command.displayCardPlayed(currentPlayer, index);
+                if (index != -1 && dialog.wantPlay(currentPlayer, board.getCurrentCard())) {
                     board.play(currentPlayer, index);
                 } else {
-                    command.passeTour(currentPlayer);
-                    currentPlayer = getNextPlayer(currentPlayer);
+                    board.setPassed(true);
+                    dialog.passeTour(currentPlayer);
                 }
-            } else {
-                command.passeTour(currentPlayer);
-                //Le tour est passé car il ne peut pas jouer
+                currentPlayer = getNextPlayer(currentPlayer);
             }
-
+            if (board.getOccurenceCount() == 4) board.reset(playerList);
         }
     }
 
@@ -74,7 +75,7 @@ public class Game {
     public boolean isFinish() {
         for (Player p : playerList) {
             if (p.getHand().size() == 0) {
-                classement.add(p);
+                leaderBoard.add(p);
                 playerList.remove(p);
             }
         }

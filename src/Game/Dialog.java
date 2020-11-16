@@ -40,16 +40,16 @@ public class Dialog {
 
     public boolean wantPlay(Player p, Card currentCard){
         while (true){
-            System.out.println(p.getName() + " => Voulez vous jouez votres carte [" + currentCard.getName() + "] (Y/N) : Yes default");
-            String value = input.nextLine();
+            System.out.print(p.getName() + " => Voulez vous jouez votres carte [" + currentCard.getName() + "] (1:Yes/0:Non) : Yes default");
+            int value = input.nextInt();
 
-            if (value.equals("") || value.equals("Y")){
+            if (value == 1){
                 System.out.println("YES");
                 return true;
-            } else if (value.equals("N")) {
+            } else {
                 System.out.println("NO");
                 return false;
-            } else System.out.println("PAS COMPRIS");
+            }
         }
     }
 

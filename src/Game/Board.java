@@ -64,7 +64,7 @@ public class Board {
             p.setHasSkipped(false);
         }
         occurenceCount = 0;
-
+        passed = false;
     }
 
     public void incrementOccurence(){
