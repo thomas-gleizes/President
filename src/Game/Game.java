@@ -43,6 +43,7 @@ public class Game {
                     board.play(currentPlayer, index);
                 } else {
                     command.passeTour(currentPlayer);
+                    currentPlayer = getNextPlayer(currentPlayer);
                 }
             } else {
                 command.passeTour(currentPlayer);
