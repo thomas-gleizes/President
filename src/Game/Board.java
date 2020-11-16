@@ -28,6 +28,10 @@ public class Board {
         return passed;
     }
 
+    public void setPassed(Boolean passed){
+        this.passed = passed;
+    }
+
     public void setPassed(boolean passed) {
         this.passed = passed;
     }
